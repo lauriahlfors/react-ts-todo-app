@@ -3,44 +3,45 @@ import { ITodo } from '../interfaces/todo';
 import TodoCard from '../components/TodoCard';
 
 const Todo: FC = () => {
-  const [name, setName] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
-  const [deadline, setDeadline] = useState<Date | any>('');
+  const [todoName, setTodoName] = useState<string>('');
+  const [todoDescription, setTodoDescription] = useState<string>('');
+  const [todoDeadline, setTodoDeadline] = useState<Date | any>('');
+  const [todoClass, todoSetClass] = useState<string>('');
   const [todos, setTodos] = useState<ITodo[]>([]);
+
+  // function to reset states
+  const resetTodoStates = (): void => {
+    setTodoName('');
+    setTodoDescription('');
+    setTodoDeadline('');
+  };
 
   // function to get input from input fields and assings them to states
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     switch (event.target.name) {
-      case 'name':
-        setName(event.target.value);
+      case 'todoName':
+        setTodoName(event.target.value);
         break;
-      case 'description':
-        setDescription(event.target.value);
+      case 'todoDescription':
+        setTodoDescription(event.target.value);
         break;
-      case 'deadline':
-        setDeadline(event.target.value);
+      case 'todoDeadline':
+        setTodoDeadline(event.target.value);
     }
-  };
-
-  // function to reset states
-  const resetTodoStates = (): void => {
-    setName('');
-    setDescription('');
-    setDeadline('');
   };
 
   // function to add todo to todo array
   const addTodo = (): void => {
-    if (!(name === '' || description === '' || deadline === '')) {
+    if (!(todoName === '' || todoDescription === '' || todoDeadline === '')) {
       let newTodo = {
-        name: name,
-        description: description,
-        deadline: deadline,
+        todoName: todoName,
+        todoDescription: todoDescription,
+        todoDeadline: todoDeadline,
       };
       setTodos([...todos, newTodo]);
       resetTodoStates();
     } else {
-      alert('Both name and deadline must be set');
+      alert('All of the required fields must be filled!');
     }
   };
 
@@ -48,34 +49,41 @@ const Todo: FC = () => {
     <div className="view view-todo">
       <h1>Todo</h1>
 
-      {/* todo name input */}
-      <input
-        type="text"
-        placeholder="Todo name"
-        name="name"
-        value={name}
-        onChange={handleChange}
-      />
+      <div className="todo-inputs">
+        {/* todo name input */}
+        <input
+          className="input-field"
+          type="text"
+          placeholder="Name..."
+          name="todoName"
+          value={todoName}
+          onChange={handleChange}
+        />
 
-      {/* todo description input */}
-      <input
-        type="text"
-        placeholder="Todo description"
-        name="description"
-        value={description}
-        onChange={handleChange}
-      />
+        {/* todo description input */}
+        <input
+          className="input-field"
+          type="text"
+          placeholder="Description..."
+          name="todoDescription"
+          value={todoDescription}
+          onChange={handleChange}
+        />
 
-      {/* todo deadline input */}
-      <input
-        type="date"
-        name="deadline"
-        value={deadline}
-        placeholder="Enter todo deadline"
-        onChange={handleChange}
-      />
+        {/* todo deadline input */}
+        <input
+          className="input-field"
+          type="date"
+          name="todoDeadline"
+          value={todoDeadline}
+          placeholder="Deadline..."
+          onChange={handleChange}
+        />
+      </div>
 
-      <button onClick={addTodo}>Add task</button>
+      <button className="button" onClick={addTodo}>
+        <span>Add todo!</span>
+      </button>
 
       <div>
         {todos.map((todo: ITodo, key: number) => {
