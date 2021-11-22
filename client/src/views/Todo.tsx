@@ -8,6 +8,7 @@ const Todo: FC = () => {
   const [deadline, setDeadline] = useState<Date | any>('');
   const [todos, setTodos] = useState<ITodo[]>([]);
 
+  // function to get input from input fields and assings them to states
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     switch (event.target.name) {
       case 'name':
@@ -21,12 +22,14 @@ const Todo: FC = () => {
     }
   };
 
+  // function to reset states
   const resetTodoStates = (): void => {
     setName('');
     setDescription('');
     setDeadline('');
   };
 
+  // function to add todo to todo array
   const addTodo = (): void => {
     if (!(name === '' || description === '' || deadline === '')) {
       let newTodo = {
@@ -44,6 +47,7 @@ const Todo: FC = () => {
   return (
     <div className="view view-todo">
       <h1>Todo</h1>
+
       {/* todo name input */}
       <input
         type="text"
@@ -52,6 +56,7 @@ const Todo: FC = () => {
         value={name}
         onChange={handleChange}
       />
+
       {/* todo description input */}
       <input
         type="text"
@@ -60,6 +65,7 @@ const Todo: FC = () => {
         value={description}
         onChange={handleChange}
       />
+
       {/* todo deadline input */}
       <input
         type="date"
