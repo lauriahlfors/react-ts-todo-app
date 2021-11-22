@@ -7,9 +7,9 @@ interface Props {
 const TodoCard = ({ todo }: Props) => {
   return (
     <div>
-      <h1>{todo.name}</h1>
-      <p>{todo.description}</p>
-      <p>Deadline on {todo.deadline}</p>
+      <h1>{todo.todoName}</h1>
+      <p>{todo.todoDescription}</p>
+      <p>Deadline on {todo.todoDeadline}</p>
     </div>
   );
 };
