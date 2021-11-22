@@ -1,5 +1,5 @@
 export interface ITodo {
-  name: string;
-  description: string;
-  deadline: Date;
+  todoName: string;
+  todoDescription: string;
+  todoDeadline: Date;
 }
