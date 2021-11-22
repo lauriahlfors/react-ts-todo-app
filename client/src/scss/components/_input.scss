@@ -1,0 +1,29 @@
+.input {
+  display: flex;
+  flex-direction: column;
+
+  // input-label
+  &-label {
+    font-size: 20px;
+  }
+
+  // input-field
+  &-field {
+    padding: 8px 16px;
+    width: 192px;
+    height: 48px;
+    color: #fff;
+    background: #101112;
+    border: solid 2px transparent;
+    border-radius: 12px;
+    // input-field hover
+    &:focus {
+      outline: none;
+      border: solid 2px #ff89de;
+    }
+    // input-field number field
+    &[type='number'] {
+      appearance: textfield;
+    }
+  }
+}
